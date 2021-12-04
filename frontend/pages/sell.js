@@ -1,7 +1,7 @@
 import React from 'react';
 
 function SellPage() {
-  return <div>SELL</div>;
+  return <h2>SELL</h2>;
 }
 
 export default SellPage;
