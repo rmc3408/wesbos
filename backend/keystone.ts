@@ -1,4 +1,5 @@
 import { config, createSchema } from '@keystone-next/keystone/schema';
+import { User } from './schemas/User';
 import 'dotenv/config';
 
 const sessionConfigured = {
@@ -19,7 +20,7 @@ export default config({
         //add seed-data here
     },
     lists: createSchema({
-        //Schema items here
+        User,
     }),
     ui: {
         //add schema by user role
