@@ -5,6 +5,7 @@ import { User } from './schemas/User';
 import { Product } from './schemas/Product';
 import { ProductImage } from './schemas/ProductImage';
 import 'dotenv/config';
+import { insertSeedData } from './seed-data';
 
 const sessionConfigured = {
     maxAge: 60 * 60 * 24 * 100, //cookies will be avaliable for 100days
@@ -28,7 +29,10 @@ export default withAuth(config({
     db: {
         adapter: 'mongoose',
         url: process.env.DATABASE_URL,
-        //add seed-data here
+        async onConnect(keystone) {
+            console.log('Connected to DB');
+            if (process.argv.includes('--seed-data')) await insertSeedData(keystone);
+        }
     },
     lists: createSchema({
         User,
