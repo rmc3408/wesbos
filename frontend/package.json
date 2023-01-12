@@ -1,18 +1,19 @@
 {
   "name": "sick-fits-frontend",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "Sick Fits! An example React, GraphQL, Next and Apollo",
   "main": "index.js",
+  "author": "Raphael",
+  "license": "ISC",
+  "repository": "https://github.com/rmc3408/wesbos",
   "scripts": {
     "dev": "next -p 7777",
     "build": "next build",
     "start": "next start -p 7777",
     "test": "NODE_ENV=test jest --watch"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@apollo/client": "3.5.5",
+    "@apollo/client": "3.4.0",
     "@apollo/link-error": "^2.0.0-beta.3",
     "@apollo/react-ssr": "^4.0.0",
     "@stripe/react-stripe-js": "^1.1.2",
@@ -40,7 +41,6 @@
     "@apollo/react-testing": "^4.0.0",
     "@babel/core": "^7.12.9",
     "@babel/preset-env": "^7.12.7",
-    "@babel/preset-react": "^7.16.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.3.0",
@@ -63,9 +63,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "wesbos",
-      "react-app",
-      "react-app/jest"
+      "wesbos"
     ]
   },
   "jest": {
