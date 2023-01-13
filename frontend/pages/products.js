@@ -1,9 +1,10 @@
 import React from 'react';
+import Products from '../components/products';
 
 function ProductsPage() {
   return (
     <div>
-      <h1>Products</h1>
+      <Products />
     </div>
   );
 }

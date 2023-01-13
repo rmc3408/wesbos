@@ -16,9 +16,10 @@ const GlobalStyled = createGlobalStyle`
     --gray: #3A3A3A;
     --lightGray: #e1e1e1;
     --offWhite: #ededed;
-    --max: 1000px;
+    --max: 1600px;
     --bs: 0 12px 24px 0 rgba(0,0,0, 0.1);
     box-sizing: border-box;
+    font-size: 62.5%;
   }
 
   body {
@@ -26,7 +27,8 @@ const GlobalStyled = createGlobalStyle`
     padding: 0;
     margin: 0;
     font-size: 1.5rem;
-    line-height: 2;
+    /* line-height: 2; */
+    text-decoration: none;
   }
 `;
 

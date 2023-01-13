@@ -1,14 +1,15 @@
 import Link from 'next/link';
 import React from 'react';
+import NavStyles from './styles/NavStyles';
 
 function Nav() {
   return (
-    <nav>
+    <NavStyles>
       <Link href="/account">Account</Link>
       <Link href="/products">Products</Link>
       <Link href="/sell">Sell</Link>
       <Link href="/orders">Orders</Link>
-    </nav>
+    </NavStyles>
   );
 }
 

@@ -1,11 +1,3 @@
-import React from 'react';
+import Products from './products';
 
-function IndexPage() {
-  return (
-    <div>
-      <h1>Main Page</h1>
-    </div>
-  );
-}
-
-export default IndexPage;
+export default Products;

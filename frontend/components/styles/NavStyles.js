@@ -17,6 +17,7 @@ const NavStyles = styled.ul`
     font-size: 1em;
     background: none;
     border: 0;
+    text-decoration: none;
     cursor: pointer;
     @media (max-width: 700px) {
       font-size: 10px;
@@ -48,7 +49,7 @@ const NavStyles = styled.ul`
     &:hover,
     &:focus {
       outline: none;
-      text-decoration:none;
+
       &:after {
         width: calc(100% - 60px);
       }
@@ -58,10 +59,11 @@ const NavStyles = styled.ul`
     }
   }
   @media (max-width: 1300px) {
-    border-top: 1px solid var(--lightGray);
+    //border-top: 1px solid var(--lightGray);
     width: 100%;
-    justify-content: center;
+    justify-content: end;
     font-size: 1.5rem;
+    align-items: stretch;
   }
 `;
 

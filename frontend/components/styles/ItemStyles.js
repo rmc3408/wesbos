@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 
-const Item = styled.div`
+const ItemStyled = styled.div`
   background: white;
   border: 1px solid var(--offWhite);
   box-shadow: var(--bs);
   position: relative;
-  display: flex;
-  flex-direction: column;
+  flex-basis: 40%;
   img {
     width: 100%;
     height: 400px;
@@ -35,4 +34,4 @@ const Item = styled.div`
   }
 `;
 
-export default Item;
+export default ItemStyled;
