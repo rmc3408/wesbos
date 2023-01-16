@@ -2,9 +2,10 @@ import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import React from 'react';
 import styled from 'styled-components';
+import DisplayError from './ErrorMessage';
 import Product from './product';
 
-const ALL_PRODUCTS_QUERY = gql`
+export const ALL_PRODUCTS_QUERY = gql`
   query ALL_PRODUCTS {
     allProducts {
       id
@@ -32,7 +33,7 @@ function Products() {
   const { loading, error, data } = useQuery(ALL_PRODUCTS_QUERY);
 
   if (loading) return <h1>Loading...</h1>;
-  if (error) return `Error! ${error.message}`;
+  if (error) return <DisplayError error={error} />;
 
   return (
     <ProductsListStyled>
