@@ -27,14 +27,12 @@ const GlobalStyled = createGlobalStyle`
     padding: 0;
     margin: 0;
     font-size: 1.5rem;
-    /* line-height: 2; */
     text-decoration: none;
   }
 `;
 
 const InnerStyledPages = styled.div`
-  max-width: var(--max);
-  padding: 1.6rem;
+  padding: 4rem 2rem;
 `;
 
 function LayoutPage({ children }) {

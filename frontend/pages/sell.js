@@ -1,9 +1,10 @@
 import React from 'react';
+import CreateProduct from '../components/create';
 
 function SellPage() {
   return (
     <div>
-      <h1>Sell</h1>
+      <CreateProduct />
     </div>
   );
 }

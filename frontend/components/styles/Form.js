@@ -22,14 +22,15 @@ const Form = styled.form`
   font-weight: 600;
   label {
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
   input,
   textarea,
   select {
+    box-sizing: border-box;
     width: 100%;
     padding: 0.5rem;
-    font-size: 1rem;
+    font-size: 2rem;
     border: 1px solid black;
     &:focus {
       outline: 0;
@@ -54,7 +55,7 @@ const Form = styled.form`
       opacity: 0.5;
     }
     &::before {
-      height: 10px;
+      height: 12px;
       content: '';
       display: block;
       background-image: linear-gradient(
