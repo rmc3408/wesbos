@@ -13,10 +13,10 @@ These are the starter files and stepped solutions for the [GitHub - Advanced Rea
 | Section | Topics | Completed |
 | ---: | --- | :---: |
 | Section 01 | Introduction and Setup | &check; |
-| Section 02 | Learning Next.js |  | <br>
-| Section 03 | CSS and Styled components |  | <br>
-| Section 04 | ServerSide GraphQL development |  | <br>
-| Section 05 | ClientSide React and GraphQL |  | <br>
+| Section 02 | Learning Next.js | &check; | <br>
+| Section 03 | CSS and Styled components | &check; | <br>
+| Section 04 | ServerSide GraphQL development | &check; | <br>
+| Section 05 | ClientSide React and GraphQL | &check; | <br>
 | Section 06 | Working with mutations |  | <br>
 | Section 07 | Pagination |  | <br>
 | Section 08 | User Authentication |  | <br>
