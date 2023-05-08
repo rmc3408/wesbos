@@ -1,10 +1,7 @@
-import { Inter } from 'next/font/google'
 import type { Metadata } from 'next'
+import localFont from 'next/font/local'
 import StyledComponentsRegistry from '@src/lib/register'
-import './global.css'
-
-// Importing external fonts
-const inter = Inter({ subsets: ['latin'] })
+import Layout from '@components/layout'
 
 // Static metadata
 export const metadata: Metadata = {
@@ -12,16 +9,21 @@ export const metadata: Metadata = {
   description: 'Next.js from WesBos Course and updated by Raphael Molinaro',
 }
 
+const myFont = localFont({
+  src: '../../public/radnikanext-medium-webfont.woff2',
+  display: 'fallback',
+})
+
 type rootProps = {
   children: React.ReactNode
 }
 
 export default function RootLayout({ children }: rootProps) {
   return (
-    <html>
-      <body>
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-      </body>
+    <html lang="en" className={myFont.className}>
+      <StyledComponentsRegistry>
+        <Layout>{children}</Layout>
+      </StyledComponentsRegistry>
     </html>
   )
 }

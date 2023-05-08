@@ -1,9 +1,8 @@
-import styles from "@app/page.module.css"
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.center}>
+    <main>
+      <div>
         <h1>Orders</h1>
       </div>
     </main>

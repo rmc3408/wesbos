@@ -1,7 +1,6 @@
-import React from 'react';
 import Link from 'next/link';
-import styled from 'styled-components';
-import Nav from './nav';
+import styled from 'styled-components'
+import Nav from '@components/nav';
 
 const Logo = styled.h1`
   font-size: 4rem;
@@ -18,7 +17,7 @@ const Logo = styled.h1`
   }
 `;
 
-const HeaderStyled = styled.header`
+const HeaderStyled = styled.div`
   .bar {
     border-bottom: 10px solid var(--black, black);
     display: grid;
