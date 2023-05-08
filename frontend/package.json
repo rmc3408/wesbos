@@ -4,7 +4,6 @@
   "description": "Sick Fits! An example React, GraphQL, Next and Apollo",
   "main": "index.js",
   "author": "Raphael",
-  "license": "ISC",
   "repository": "https://github.com/rmc3408/wesbos",
   "scripts": {
     "dev": "next dev",
@@ -20,6 +19,7 @@
     "next": "13.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "styled-components": "^6.0.0-rc.1",
     "typescript": "5.0.4"
   },
   "devDependencies": {
