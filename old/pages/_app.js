@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+
 import nProgress from 'nprogress';
 import '../components/styles/nprogress.css';
 import { Router } from 'next/dist/client/router';
@@ -6,17 +6,17 @@ import { ApolloProvider } from '@apollo/client';
 import withApollo from '../lib/withData';
 import LayoutPage from '../components/layout';
 
-Router.events.on('routeChangeStart', () => nProgress.start());
-Router.events.on('routeChangeComplete', () => nProgress.done());
-Router.events.on('routeChangeError', () => nProgress.done());
+// Router.events.on('routeChangeStart', () => nProgress.start());
+// Router.events.on('routeChangeComplete', () => nProgress.done());
+// Router.events.on('routeChangeError', () => nProgress.done());
 
 function MyApp({ Component, pageProps, apollo }) {
   return (
     <>
       <ApolloProvider client={apollo}>
-        <LayoutPage>
+        {/* <LayoutPage>
           <Component {...pageProps} />
-        </LayoutPage>
+        </LayoutPage> */}
       </ApolloProvider>
     </>
   );

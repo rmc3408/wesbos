@@ -3,26 +3,29 @@ import styled from 'styled-components'
 import Nav from '@components/nav';
 
 const Logo = styled.h1`
-  font-size: 4rem;
   background: red;
   position: relative;
   z-index: 2;
-  margin-left: 2rem;
   transform: skew(-7deg);
-  a {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  min-width: 360px;
+  left: -10px;
+  white-space: nowrap;
+  a {  
     color: white;
     text-decoration: none;
     text-transform: uppercase;
-    padding: 0.5rem 1rem;
+    padding: 2rem 3rem;
+    
   }
 `;
 
 const HeaderStyled = styled.div`
   .bar {
-    border-bottom: 10px solid var(--black, black);
+    border-bottom: 6px solid var(--black, black);
     display: grid;
     align-items: stretch;
-    justify-content: end;
     grid-template-columns: auto 1fr;
     text-decoration: none;
   }

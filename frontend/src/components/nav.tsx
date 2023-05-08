@@ -1,5 +1,8 @@
+"use client"
+
 import Link from 'next/link';
 import NavStyles from './styles/NavStyles';
+
 
 function Nav() {
   return (
