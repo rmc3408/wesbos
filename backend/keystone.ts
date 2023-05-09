@@ -1,61 +1,26 @@
-import { createAuth } from '@keystone-next/auth';
-import { config, createSchema } from '@keystone-next/keystone/schema';
-import { KeystoneContext } from '@keystone-next/types';
-import 'dotenv/config';
-import {
-  withItemData,
-  statelessSessions,
-} from '@keystone-next/keystone/session';
-import { User } from './schemas/User';
-import { Product } from './schemas/Product';
-import { ProductImage } from './schemas/ProductImage';
-import { insertSeedData } from './seed-data';
+import { config, list } from '@keystone-6/core'
+import { allowAll } from '@keystone-6/core/access'
+import { password, text } from '@keystone-6/core/fields'
 
-const { withAuth } = createAuth({
-  listKey: 'User',
-  identityField: 'email',
-  secretField: 'password',
-  initFirstItem: {
-    fields: ['name', 'email', 'password'],
+export default config({
+  db: {
+    provider: 'postgresql',
+    url: 'postgres://rmc3408:secret123@localhost:5432/sick',
+    onConnect: async (context) => {
+      console.log(`Server is running at 5432`)
+    },
+    enableLogging: true,
+    idField: { kind: 'uuid' },
+    shadowDatabaseUrl: 'postgres://rmc3408:secret123@localhost:5432/sick'
   },
-});
-
-const DATABASE = process.env.DATABASE_URL;
-const SESSION = {
-  maxAge: 60 * 60 * 24 * 360,
-  secret: process.env.COOKIE_SECRET,
-};
-
-export default withAuth(
-  config({
-    server: {
-      cors: {
-        origin: [process.env.FRONTEND_URL],
-        credentials: true,
+  lists: {
+    User: list({
+      access: allowAll,
+      fields: {
+        name: text({ validation: { isRequired: true } }),
+        email: text({ validation: { isRequired: true }, isIndexed: 'unique' }),
+        password: password(),
       },
-    },
-    db: {
-      adapter: 'mongoose',
-      url: DATABASE,
-      async onConnect(ctx: KeystoneContext) {
-        // console.log(cfg);
-        if (process.argv.includes('--seed-data')) {
-          await insertSeedData(ctx);
-        }
-      },
-    },
-    lists: createSchema({
-      User,
-      Product,
-      ProductImage,
     }),
-    ui: {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      isAccessAllowed: (ctx: KeystoneContext) => !!ctx.session?.data,
-      // path: '/admin',
-    },
-    session: withItemData(statelessSessions(SESSION), {
-      User: 'id',
-    }),
-  })
-);
+  },
+})
