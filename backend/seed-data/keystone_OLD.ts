@@ -1,6 +1,6 @@
 import { createAuth } from '@keystone-next/auth';
 import { config, createSchema } from '@keystone-next/keystone/schema';
-import { KeystoneContext } from '@keystone-next/types';
+
 import 'dotenv/config';
 import {
   withItemData,
