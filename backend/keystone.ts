@@ -40,7 +40,7 @@ export default config(
     },
     lists: lists,
     ui: {
-      isAccessAllowed: (context) => {
+      isAccessAllowed: (context) => {      
         return !!context.session?.itemId
       },
     }
