@@ -1,30 +1,14 @@
-import { cloudinaryImage } from '@keystone-next/cloudinary';
-import { text, relationship } from '@keystone-next/fields';
-import { list } from '@keystone-next/keystone/schema';
-import 'dotenv/config';
+import { list } from '@keystone-6/core'
+import { allowAll } from '@keystone-6/core/access'
+import { text, relationship, image } from '@keystone-6/core/fields'
 
-const cloudConfig = {
-  cloudName: process.env.CLOUDINARY_CLOUD_NAME,
-  apiKey: process.env.CLOUDINARY_KEY,
-  apiSecret: process.env.CLOUDINARY_SECRET,
-  folder: 'sickfits',
-};
 
 export const ProductImage = list({
-  ui: {
-    listView: {
-      initialSort: {
-        field: 'altText',
-        direction: 'ASC',
-      },
-      initialColumns: ['image', 'altText', 'product'],
-    },
-  },
+  access: allowAll,
   fields: {
-    image: cloudinaryImage({ cloudinary: cloudConfig, label: 'Source' }),
+    name: text({ validation: { isRequired: true } }),
+    image: image({ storage: 'images_files', label: 'ImageSource' }),
     altText: text(),
-    product: relationship({
-      ref: 'Product.photo',
-    }),
+    product: relationship({ ref: 'Product.photo' }),
   },
-});
+})

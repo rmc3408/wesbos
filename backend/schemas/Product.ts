@@ -1,40 +1,42 @@
-import { text, select, integer, relationship } from '@keystone-next/fields';
-import { list } from '@keystone-next/keystone/schema';
+import { list } from '@keystone-6/core'
+import { allowAll } from '@keystone-6/core/access'
+import { text, select, integer, relationship } from '@keystone-6/core/fields'
+
+enum StatusProductEnum {
+  AVALIABLE = 'AVALIABLE',
+  UNAVALIABLE = 'UNAVALIABLE',
+  DRAFT = 'DRAFT',
+}
 
 export const Product = list({
-  ui: {
-    listView: {
-      initialColumns: ['name', 'price', 'status'],
-    },
-  },
+  access: allowAll,
   fields: {
-    name: text({ isRequired: true }),
+    name: text({ validation: { isRequired: true } }),
+    price: integer(),
     description: text({
+      validation: { isRequired: true },
       ui: {
         displayMode: 'textarea',
       },
     }),
     status: select({
       options: [
-        { label: 'Draft', value: 'draft' },
-        { label: 'Avaliable', value: 'available' },
-        { label: 'Unavailable', value: 'unavailable' },
+        { label: 'Avaliable', value: StatusProductEnum.AVALIABLE },
+        { label: 'Unavaliable', value: StatusProductEnum.UNAVALIABLE },
+        { label: 'Draft', value: StatusProductEnum.DRAFT },
       ],
-      defaultValue: 'Draft',
-      ui: {
-        displayMode: 'segmented-control',
-        createView: { fieldMode: 'hidden' },
-      },
+      ui: { displayMode: 'segmented-control' },
+      defaultValue: StatusProductEnum.DRAFT,
     }),
-    price: integer(),
     photo: relationship({
       ref: 'ProductImage.product',
+      many: true,
       ui: {
-        cardFields: ['image', 'altText'],
         displayMode: 'cards',
-        inlineCreate: { fields: ['image', 'altText'] },
-        inlineEdit: { fields: ['image', 'altText'] },
+        cardFields: ['image'],
+        inlineCreate: { fields: ['name', 'image'] },
+        inlineEdit: { fields: ['name', 'image'] },
       },
     }),
   },
-});
+})

@@ -1,9 +1,40 @@
+
+// export const products = [
+//   {
+//     name: 'MYSELF',
+//     description: 'soo nice',
+//     status: 'AVAILABLE',
+//     price: 9999,
+//     photo: {
+//       id: 'clhghrxw400004oui5svd46de',
+//       public_id: 'sickfits/clhghrxw400004oui5svd46de',
+//       filename: 'shirtless.jpg',
+//       originalFilename: 'shirtless.jpg',
+//       mimetype: 'image/jpeg',
+//       encoding: '7bit',
+//       publicUrl: 'http://res.cloudinary.com/rmc3408/image/upload/h_150,w_100/v1/sickfits/clhghrxw400004oui5svd46de',
+//       publicUrlTransformed: 'http://res.cloudinary.com/rmc3408/image/upload/h_150,w_100/v1/sickfits/clhghrxw400004oui5svd46de'
+//     }
+//   }
+// ]
+
 function timestamp() {
-  // sometime in the last 30 days
-  const stampy =
-    Date.now() - Math.floor(Math.random() * 1000 * 60 * 60 * 24 * 30);
+  const days30 = 1000 * 60 * 60 * 24 * 30 // 30 days
+  const stampy = Date.now() - Math.floor(Math.random() * days30);
   return new Date(stampy).toISOString();
 }
+
+const formatter = new Intl.NumberFormat('en-CA', {
+  style: 'currency',
+  currency: 'CAD',
+});
+
+export function formatMoney(cents: number): string {
+  const dollars = cents / 100;
+  return formatter.format(dollars);
+}
+
+
 
 export const products = [
   {
@@ -17,6 +48,7 @@ export const products = [
       originalFilename: 'hondo.jpg',
       mimetype: 'image/jpeg',
       encoding: '7bit',
+      publicUrl: 'https://res.cloudinary.com/rmc3408/image/upload/v1683642012/sickfits/clhgcz9zs0000fcui1d5n8tjx.jpg',
       _meta: {
         public_id: 'sick-fits-keystone/5dfbed262849d7961377c2c0',
         version: 1576791335,
