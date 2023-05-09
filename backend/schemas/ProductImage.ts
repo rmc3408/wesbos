@@ -1,10 +1,9 @@
 import { list } from '@keystone-6/core'
 import { cloudinaryImage } from '@keystone-6/cloudinary'
 import { allowAll } from '@keystone-6/core/access'
-import { text, relationship } from '@keystone-6/core/fields'
+import { text, relationship, image } from '@keystone-6/core/fields'
 import { config as dotenvConfig } from 'dotenv'
 dotenvConfig()
-
 
 const cloudinaryConfig = {
   cloudName: process.env.CLOUDINARY_CLOUD_NAME!,
@@ -17,7 +16,9 @@ export const ProductImage = list({
   access: allowAll,
   fields: {
     name: text({ validation: { isRequired: true } }),
-    image: cloudinaryImage({ cloudinary: cloudinaryConfig, label: 'ImageSource' }),
+    //image: cloudinaryImage({ cloudinary: cloudinaryConfig, label: 'ImageSource' }),
+    image: image({ storage: 'images_files' }),
     altText: text(),
+    product: relationship({ ref: 'Product.photo' }),
   },
 })

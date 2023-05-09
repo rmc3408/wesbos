@@ -7,6 +7,7 @@ import {
   timestamp,
   checkbox,
 } from '@keystone-6/core/fields';
+// Document is field which text can be formatted
 import { document } from '@keystone-6/fields-document';
 
 export const User = list({
@@ -17,5 +18,10 @@ export const User = list({
     password: password(),
     isAdmin: checkbox(),
     createdAt: timestamp({ defaultValue: { kind: 'now' } }),
+  },
+  ui: {
+    listView: {
+      initialColumns: ['name', 'isAdmin', 'id']
+    }
   }
 })
