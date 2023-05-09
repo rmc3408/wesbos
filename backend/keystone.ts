@@ -6,6 +6,7 @@ import { insertSeedData } from './seed-data'
 import { config as dotenvConfig } from 'dotenv'
 dotenvConfig()
 
+
 type SessionCtxType = {
   session: undefined | {
         listKey: 'User'
@@ -48,10 +49,10 @@ export default config(
       images_files: {
         kind: 's3',
         type: 'image',
-        bucketName: 'wesbos-raph-dev-images',
-        region: 'us-east-1',
-        accessKeyId: 'AKIAZGGBWYDEGOYDPBX2',
-        secretAccessKey: '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',
+        bucketName: process.env.S3_BUCKETNAME!,
+        region: process.env.S3_REGION!,
+        accessKeyId: process.env.S3_ACCESS_KEY_ID!,
+        secretAccessKey: process.env.S3_SECRET_ACCESS_KEY!,
       }
     }
   })

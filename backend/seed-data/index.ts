@@ -1,4 +1,4 @@
-import { products } from './data'
+//import { products } from './data'
 import type { KeystoneContext } from '@keystone-6/core/types'
 
 type ProductType = {
@@ -6,46 +6,33 @@ type ProductType = {
   price: number
   description: string
   status: string
-  photo: ProductImageType | string
+  photo: Image_File
 }
 
-type ProductImageType = {
-  name: string
-  image: CloudinaryImage_File
-  altText: String
-}
-
-type CloudinaryImage_File = {
+type Image_File = {
   id?: string
   filename: string
   originalFilename: string
   mimetype: string
   encoding: string
   publicUrl: string
-  publicUrlTransformed: string
 }
 
-// export let products: [ProductType] = [
-//   {
-//     name: 'MYSELF',
-//     description: 'soo nice',
-//     status: 'AVAILABLE',
-//     price: 9999,
-//     photo: {
-//       name: 'string',
-//       altText: 'String',
-//       image: {
-//         publicUrl: 'https://res.cloudinary.com/rmc3408/image/upload/v1683642012/sickfits/clhgcz9zs0000fcui1d5n8tjx.jpg',
-//         mimetype: 'image/jpeg',
-//         filename: 'IMG-20200610-WA0011.jpeg',
-//         encoding: '7bit',
-//         originalFilename: 'IMG-20200610-WA0011.jpeg',
-//         publicUrlTransformed:
-//           'https://res.cloudinary.com/rmc3408/image/upload/v1683642012/sickfits/clhgcz9zs0000fcui1d5n8tjx.jpg',
-//       },
-//     },
-//   },
-// ]
+export let products: [ProductType] = [
+  {
+    name: 'MYSELF',
+    description: 'soo nice',
+    status: 'AVAILABLE',
+    price: 9999,
+    photo: {
+      publicUrl: 'https://res.cloudinary.com/rmc3408/image/upload/v1683642012/sickfits/clhgcz9zs0000fcui1d5n8tjx.jpg',
+      mimetype: 'image/jpeg',
+      filename: 'IMG-20200610-WA0011.jpeg',
+      encoding: '7bit',
+      originalFilename: 'IMG-20200610-WA0011.jpg'
+    },
+  },
+]
 
 export async function insertSeedData(ks: KeystoneContext) {
   const prismaAdapterDB = ks.db
