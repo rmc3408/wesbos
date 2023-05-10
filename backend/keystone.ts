@@ -43,16 +43,6 @@ export default config(
       isAccessAllowed: (context) => {
         return !!context.session?.itemId
       },
-    },
-    storage: {
-      s3_files: {
-        kind: 's3',
-        type: 'image',
-        bucketName: process.env.S3_BUCKETNAME!,
-        region: process.env.S3_REGION!,
-        accessKeyId: process.env.S3_ACCESS_KEY_ID!,
-        secretAccessKey: process.env.S3_SECRET_ACCESS_KEY!,
-      },
     }
   })
 )
