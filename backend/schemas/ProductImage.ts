@@ -7,8 +7,8 @@ export const ProductImage = list({
   access: allowAll,
   fields: {
     name: text({ validation: { isRequired: true } }),
-    image: image({ storage: 'images_files', label: 'ImageSource' }),
+    image: image({ storage: 's3_files', label: 'OnlineSource' }),
     altText: text(),
-    product: relationship({ ref: 'Product.photo' }),
+    product: relationship({ ref: 'Product.photo', many: true }),
   },
 })

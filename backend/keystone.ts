@@ -41,19 +41,18 @@ export default config(
     lists: lists,
     ui: {
       isAccessAllowed: (context) => {
-        const { session }: SessionCtxType = context.session
-        return !!context.session.itemId
+        return !!context.session?.itemId
       },
     },
     storage: {
-      images_files: {
+      s3_files: {
         kind: 's3',
         type: 'image',
         bucketName: process.env.S3_BUCKETNAME!,
         region: process.env.S3_REGION!,
         accessKeyId: process.env.S3_ACCESS_KEY_ID!,
         secretAccessKey: process.env.S3_SECRET_ACCESS_KEY!,
-      }
+      },
     }
   })
 )
