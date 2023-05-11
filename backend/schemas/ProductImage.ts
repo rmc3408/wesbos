@@ -5,8 +5,7 @@ import { cloudinaryImage } from '@keystone-6/cloudinary'
 import { config as dotenvConfig } from 'dotenv'
 dotenvConfig()
 
-
-const cloudinaryConfig = {
+export const cloudinaryConfig = {
   cloudName: process.env.CLOUDINARY_CLOUD_NAME!,
   apiKey: process.env.CLOUDINARY_API_KEY!,
   apiSecret: process.env.CLOUDINARY_API_SECRET!,
