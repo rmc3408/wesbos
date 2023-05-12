@@ -22,6 +22,9 @@ export default config(
   withAuth({
     server: server,
     session: session,
+    graphql: {
+      path: '/graphql'
+    },
     db: {
       // local database
       // provider: 'sqlite',
