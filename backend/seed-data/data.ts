@@ -22,7 +22,13 @@ export type ProductType = {
   image: CloudinaryImageType
 }
 
-type CloudinaryImageType = {
+export type ProductImagetype = {
+  name: string
+  altText: string
+  image: CloudinaryImageType
+}
+
+export type CloudinaryImageType = {
   encoding: string
   filename: string
   mimetype: string
@@ -32,15 +38,15 @@ type CloudinaryImageType = {
 
 export type CloudinaryMetaType = {
   public_id: string
-  version: 1576791335,
+  version: number,
   signature: string
-  width: 750,
-  height: 457,
+  width: number,
+  height: number,
   format: string
   resource_type: string
-  created_at: 3600,
+  created_at: number,
   tags: Array<string>
-  bytes: 27871,
+  bytes: number,
   type: string
   etag: string
   placeholder: boolean,
@@ -49,7 +55,15 @@ export type CloudinaryMetaType = {
   original_filename: string
 }
 
-export const products: ProductType[] = [
+export type SeedDataType = {
+  name: string
+  price: number
+  description: string
+  status: string
+  image: CloudinaryImageType
+}
+
+export const products: SeedDataType[] = [
   {
     name: 'Airmax 270',
     description: 'Great shoes!',

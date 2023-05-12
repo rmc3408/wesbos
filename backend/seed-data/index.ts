@@ -1,18 +1,19 @@
 import { uploadImage } from '../utils/cloudinary'
-import { products } from './data'
+import { CloudinaryMetaType, ProductImagetype, products } from './data'
 import type { KeystoneContext } from '@keystone-6/core/types'
 
 
-export const insertSeedData = async (ks: KeystoneContext) => {
+export const insertSeedData = async (ks: KeystoneContext): Promise<void> => {
 
   console.log(`🌱 START: Inserting ${products.length} Products`)
   
   for (const product of products) {
-    const productImagefound = await ks.db.ProductImage.findMany({ where: { name: { equals: product.name } } })
-    const productFound = await ks.db.Product.findMany({ where: { name: { equals: product.name } } })
-    const meta = await uploadImage(product.image.filename)
+    const findNameCondition = { where: { name: { equals: product.name } } }
+    const productImagefound = await ks.db.ProductImage.findMany(findNameCondition)
+    const productFound = await ks.db.Product.findMany(findNameCondition)
+    const meta: CloudinaryMetaType = await uploadImage(product.image.filename)
 
-    console.log('--------------------------------------')
+    console.log('\n')
     console.log(productFound.length, ' Product has ', productImagefound.length, ' productImage')
 
     if (productFound.length === 0 && productImagefound.length === 0) {

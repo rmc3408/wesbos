@@ -15,7 +15,7 @@ cloudinary.config(cloudinaryConfig);
 
      
 // Upload from LocalFile To CloudinaryServer
-// @returns CloudinaryDataResponseType
+// @returns CloudinaryDataResponseType Metadata
 export function uploadImage(filename: string): Promise<CloudinaryMetaType> {
   const promise = new Promise<CloudinaryMetaType>((resolve, reject) => {
 
