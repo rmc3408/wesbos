@@ -6,9 +6,9 @@
   "author": "Raphael",
   "repository": "https://github.com/rmc3408/wesbos",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 4000",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 4000",
     "lint": "next lint"
   },
   "dependencies": {
@@ -17,6 +17,7 @@
     "@types/node": "20.1.0",
     "@types/react": "18.2.6",
     "@types/react-dom": "18.2.4",
+    "clsx": "^1.2.1",
     "dotenv": "^16.0.3",
     "eslint": "8.40.0",
     "graphql": "^16.6.0",

@@ -1,13 +1,13 @@
-"use client"
+import { pollQuery } from '../../components/poll/query'
+import getClient from '../../apollo/server-client'
+import { Poll } from './poll'
 
-import Poll from "./poll"
+export default async function Sell() {
+  const data = await getClient().query({
+    query: pollQuery,
+    variables: { id: '1' },
+  })
+  console.log('INSIDE SELL->PAGE-> GET CLIENT', data)
 
-export const dynamic = "force-dynamic"
-
-export default function Home() {
-  return (
-    <main>
-        <Poll />
-    </main>
-  )
+  return <Poll poll={data.data.poll} />
 }

@@ -1,24 +1,14 @@
-import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import StyledComponentsRegistry from '@src/lib/register'
 import Layout from '@components/layout'
-import { ApolloWrapper } from '../apollo/apollo-wrapper'
+import ApolloWrapper from '../apollo/client-wrapper'
+import { type Metadata } from 'next'
+
 
 // Static metadata
-// export const metadata: Metadata = {
-//   title: 'SickFits',
-//   description: 'Next.js from WesBos Course and updated by Raphael Molinaro',
-// }
-// Dynamic metadata
-function Head() {
-  return (
-    <>
-      <title>SickFits</title>
-      <meta content="width=device-width, initial-scale=1" name="viewport" />
-      <meta name="description" content="Next.js from WesBos Course and updated by Raphael Molinaro" />
-      <link rel="icon" href="/favicon.ico" />
-    </>
-  )
+export const metadata: Metadata = {
+  title: 'SickFits',
+  description: 'Next.js from WesBos Course and updated by Raphael Molinaro',
 }
 
 const myFont = localFont({
@@ -33,7 +23,6 @@ type rootProps = {
 export default function RootLayout({ children }: rootProps) {
   return (
     <html lang="en" className={myFont.className}>
-      <Head />
       <StyledComponentsRegistry>
         <ApolloWrapper>
           <Layout>{children}</Layout>

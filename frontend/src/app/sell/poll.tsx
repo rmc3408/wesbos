@@ -1,22 +1,50 @@
-"use client";
+'use client'
 
-import { gql } from "@apollo/client";
-import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
-import { useState } from "react";
+import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import { useCallback, useState } from 'react'
+import { Poll as PollInner } from '../../components/poll'
+import { answerPollMutation } from '../../components/poll/mutation'
+import { useMutation } from '@apollo/client'
 
-const query = gql`query {
-  launchLatest {
-    mission_name
+export const Poll = ({
+  poll,
+}: {
+  poll: {
+    id: string
+    question: string
+    totalVotes: number
+    answers: {
+      id: string
+      votes: number
+      percentage: number
+      text: string
+    }[]
   }
-}`
+}) => {
+  const router = useRouter()
+  const pathname = usePathname()
+  const showResults = useSearchParams().get('results') === 'true'
 
-export const Poll = () => {
-  const [showResults, setShowResults] = useState(false);
-  const { data } = useSuspenseQuery(query);
+  const [loading, setLoading] = useState(false)
 
-  return (
-    <h1>Sell {data.launchLatest.mission_name}</h1>
-  );
+  const [mutate] = useMutation(answerPollMutation)
+
+  const handleClick = useCallback(
+    async (answerId: string) => {
+      setLoading(true)
+
+      await mutate({
+        variables: { pollId: poll.id, answerId },
+      })
+
+      router.push(`${pathname}?results=true`)
+
+      // this doesn't wait for the page to be reloaded
+      // but it's fine for this demo
+      setLoading(false)
+    },
+    [mutate, poll.id, router, pathname]
+  )
+
+  return <PollInner poll={poll} loading={loading} onClick={handleClick} showResults={showResults} />
 }
-
-export default Poll

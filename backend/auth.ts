@@ -16,7 +16,7 @@ const { withAuth } = createAuth({
 })
 
 const server = {
-  cors: { origin: [process.env.FRONTEND_GRAPHQL_URL!, process.env.FRONTEND_NEXT_URL!], credentials: true },
+  cors: { origin: [ process.env.FRONTEND_NEXT_URL! ], credentials: true },
   port: process.env.KEYSTONE_PORT!,
 }
 
