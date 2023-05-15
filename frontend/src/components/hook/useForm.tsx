@@ -27,7 +27,8 @@ export default function useForm(initial: IInput) {
     if (type === 'file') {
       const fileCurrent = fileInput.current
       if (!fileCurrent?.files) return
-      const file = fileCurrent?.files[0]
+      //const file = fileCurrent?.files[0]
+      const file = URL.createObjectURL(fileCurrent?.files[0]);
       value = file
     }
     setInput({

@@ -1,69 +1,40 @@
 'use client'
 
-import { gql, useMutation } from '@apollo/client'
-import Form from './styles/Form';
+import { useMutation } from '@apollo/client'
+import Form from './styles/Form'
 import useForm from '@components/hook/useForm'
 import DisplayError from './errorMessage'
-import { ALL_PRODUCTS_QUERY } from '@graphql/query'
 import { FormEvent } from 'react'
+import { ADD_ONE_PRODUCT_POST } from '@graphql/mutation'
 
-//import { useRouter } from 'next/router';
-
-const ADD_ONE_PRODUCT_POST = gql`
-  mutation ADD_ONE_PRODUCT_MUTATION($data: ProductCreateInput) {
-    createProduct(data: $data) {
-      id
-      name
-    }
-  }
-`;
 
 function CreateProduct() {
-  // const router = useRouter();
-  // const [addProduct, { loading, error }] = useMutation(ADD_ONE_PRODUCT_POST, {
-  //   refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
-  // });
   const { input, handleInput, resetForm, fileInput } = useForm({
     name: '',
     price: 0,
     description: '',
-    image: undefined
-  });
+    image: undefined,
+  })
+  const [addProduct, { loading, error, data }] = useMutation(ADD_ONE_PRODUCT_POST)
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // const response = await addProduct({
-    //   variables: {
-    //     data: {
-    //       name: input.name,
-    //       description: input.description,
-    //       status: 'draft',
-    //       price: input.price,
-    //       photo: {
-    //         create: { image: input.image, altText: input.name },
-    //       },
-    //     },
-    //   },
-    // });
-    console.log('response', input);
+    e.preventDefault()
+    await addProduct({ variables: input })
     resetForm()
-    // router.push({
-    //   pathname: `/product/${response.data.createProduct.id}`,
-    // });
-  };
+  }
 
-  // if (error) return <DisplayError error={error} />;
+  if (error) return <DisplayError error={error} />;
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <fieldset aria-busy >
+        <fieldset aria-busy={loading} disabled={loading}>
           <label htmlFor="name">
             Name
             <input
               type="text"
               id="name"
               name="name"
-              placeholder='First Name here'
+              placeholder="First Name here"
               value={input.name}
               onChange={handleInput}
             />
@@ -91,12 +62,7 @@ function CreateProduct() {
           </label>
           <label htmlFor="image">
             Upload Image
-            <input
-              type="file"
-              name="image"
-              ref={fileInput}
-              onChange={handleInput}
-            />
+            <input type="file" name="image" ref={fileInput} onChange={handleInput} />
           </label>
 
           <button type="button" onClick={resetForm}>
@@ -106,7 +72,7 @@ function CreateProduct() {
         </fieldset>
       </Form>
     </div>
-  );
+  )
 }
 
-export default CreateProduct;
+export default CreateProduct

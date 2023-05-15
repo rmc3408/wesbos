@@ -5,11 +5,10 @@ import { PropsWithChildren } from 'react'
 import { memoryCache } from './memoryCache'
 import { errorLink, SSRlink } from './link'
 import { ApolloNextAppProvider } from '@apollo/experimental-nextjs-app-support/ssr'
-//import { createUploadLink } from 'apollo-upload-client'
 
 
 function makeClient() {
-  const httpLink = new HttpLink({
+  const clientHttpLink = new HttpLink({
     uri: process.env.NEXT_PUBLIC_GRAPHQL_DEV_ENDPOINT,
   })
 
@@ -18,7 +17,7 @@ function makeClient() {
     ssrMode: true,
     connectToDevTools: true,
     cache: memoryCache,
-    link: from([errorLink, SSRlink, httpLink]),
+    link: from([errorLink, SSRlink, clientHttpLink]),
   })
 }
 

@@ -2,6 +2,7 @@ import { HttpLink } from '@apollo/client'
 import { onError } from '@apollo/client/link/error'
 import { SSRMultipartLink } from '@apollo/experimental-nextjs-app-support/ssr'
 
+
 export const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
     graphQLErrors.forEach(({ message, locations, path }) =>
@@ -21,6 +22,7 @@ export const errorLink = onError(({ graphQLErrors, networkError }) => {
 //     }
 //   }
 // });
+
 
 // for SSR environment
 export const SSRlink = new SSRMultipartLink({ stripDefer: true })
