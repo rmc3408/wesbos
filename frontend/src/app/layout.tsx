@@ -1,5 +1,5 @@
 import localFont from 'next/font/local'
-import StyledComponentsRegistry from '@src/lib/register'
+import StyledComponentsRegistry from '../lib/register'
 import Layout from '@components/layout'
 import ApolloWrapper from '../apollo/client-wrapper'
 import { type Metadata } from 'next'

@@ -1,9 +1,13 @@
-import { gql, useMutation } from '@apollo/client';
+'use client'
+
+import { gql, useMutation } from '@apollo/client'
 import Form from './styles/Form';
-import useForm from '../lib/hook/useForm';
-import DisplayError from './ErrorMessage';
-import { ALL_PRODUCTS_QUERY } from './products';
-import { useRouter } from 'next/router';
+import useForm from '@components/hook/useForm'
+import DisplayError from './errorMessage'
+import { ALL_PRODUCTS_QUERY } from '@graphql/query'
+import { FormEvent } from 'react'
+
+//import { useRouter } from 'next/router';
 
 const ADD_ONE_PRODUCT_POST = gql`
   mutation ADD_ONE_PRODUCT_MUTATION($data: ProductCreateInput) {
@@ -15,44 +19,44 @@ const ADD_ONE_PRODUCT_POST = gql`
 `;
 
 function CreateProduct() {
-  const router = useRouter();
-  const [addProduct, { loading, error }] = useMutation(ADD_ONE_PRODUCT_POST, {
-    refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
-  });
-  const [input, handleInput, resetForm, clearForm, fileInput] = useForm({
-    name: 'Raph',
-    price: 20,
+  // const router = useRouter();
+  // const [addProduct, { loading, error }] = useMutation(ADD_ONE_PRODUCT_POST, {
+  //   refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
+  // });
+  const { input, handleInput, resetForm, clearForm, fileInput } = useForm({
+    name: 'First Name',
+    price: 0,
     description: 'Lorem ipsum',
-    image: {},
+    image: undefined
   });
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await addProduct({
-      variables: {
-        data: {
-          name: input.name,
-          description: input.description,
-          status: 'draft',
-          price: input.price,
-          photo: {
-            create: { image: input.image, altText: input.name },
-          },
-        },
-      },
-    });
-    // console.log('response', response.data.createProduct);
-    clearForm();
-    router.push({
-      pathname: `/product/${response.data.createProduct.id}`,
-    });
+    // const response = await addProduct({
+    //   variables: {
+    //     data: {
+    //       name: input.name,
+    //       description: input.description,
+    //       status: 'draft',
+    //       price: input.price,
+    //       photo: {
+    //         create: { image: input.image, altText: input.name },
+    //       },
+    //     },
+    //   },
+    // });
+    console.log('response', input);
+    // clearForm();
+    // router.push({
+    //   pathname: `/product/${response.data.createProduct.id}`,
+    // });
   };
 
-  if (error) return <DisplayError error={error} />;
+  // if (error) return <DisplayError error={error} />;
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <fieldset aria-busy={loading}>
+        <fieldset>
           <label htmlFor="name">
             Name
             <input

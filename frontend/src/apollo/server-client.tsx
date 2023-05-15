@@ -9,9 +9,11 @@ import { SSRlink, errorLink, httpLink } from './link'
 const { getClient } = registerApolloClient(() => {
 
   return new ApolloClient({
+    name: 'apolloClient-SSR',
     cache: memoryCache,
     link: from([ errorLink, httpLink ])
   })
 })
+const apolloClient = getClient()
 
-export default getClient
+export default apolloClient

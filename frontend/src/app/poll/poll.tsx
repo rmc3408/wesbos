@@ -2,8 +2,8 @@
 
 import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 import { useCallback, useState } from 'react'
-import { Poll as PollInner } from '../../components/poll'
-import { answerPollMutation } from '../../components/poll/mutation'
+import { Poll as PollInner } from '@components/poll'
+import { answerPollMutation } from '@graphql/poll'
 import { useMutation } from '@apollo/client'
 
 export const Poll = ({

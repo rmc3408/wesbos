@@ -1,4 +1,4 @@
-export default function formatMoney(value) {
+export default function formatMoney(value: number): string {
   const formatted = Intl.NumberFormat('en-CA', {
     style: 'currency',
     currency: 'CAD',
