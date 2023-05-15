@@ -37,15 +37,13 @@ export default function useForm(initial: IInput) {
   }
 
   function resetForm() {
-    setInput(initial)
-  }
-
-  function clearForm() {
     const arrValues = Object.entries(input)
     arrValues.map((item) => (item[1] = ''))
     const clearedInput = Object.fromEntries(arrValues)
+    if (!fileInput.current) return
+    fileInput.current.value = ''
     setInput(clearedInput as IInput)
   }
 
-  return { input, handleInput, resetForm, clearForm, fileInput }
+  return { input, handleInput, resetForm, fileInput }
 }

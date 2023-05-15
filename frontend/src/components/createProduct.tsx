@@ -23,10 +23,10 @@ function CreateProduct() {
   // const [addProduct, { loading, error }] = useMutation(ADD_ONE_PRODUCT_POST, {
   //   refetchQueries: [{ query: ALL_PRODUCTS_QUERY }],
   // });
-  const { input, handleInput, resetForm, clearForm, fileInput } = useForm({
-    name: 'First Name',
+  const { input, handleInput, resetForm, fileInput } = useForm({
+    name: '',
     price: 0,
-    description: 'Lorem ipsum',
+    description: '',
     image: undefined
   });
 
@@ -46,7 +46,7 @@ function CreateProduct() {
     //   },
     // });
     console.log('response', input);
-    // clearForm();
+    resetForm()
     // router.push({
     //   pathname: `/product/${response.data.createProduct.id}`,
     // });
@@ -56,14 +56,14 @@ function CreateProduct() {
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <fieldset>
+        <fieldset aria-busy >
           <label htmlFor="name">
             Name
             <input
               type="text"
               id="name"
               name="name"
-              placeholder="Name of product"
+              placeholder='First Name here'
               value={input.name}
               onChange={handleInput}
             />
@@ -101,9 +101,6 @@ function CreateProduct() {
 
           <button type="button" onClick={resetForm}>
             Reset
-          </button>
-          <button type="button" onClick={clearForm}>
-            Clear
           </button>
           <button type="submit">Add Product</button>
         </fieldset>
