@@ -3,21 +3,17 @@
 import { ApolloClient, HttpLink, SuspenseCache, from } from '@apollo/client'
 import { PropsWithChildren } from 'react'
 import { memoryCache } from './memoryCache'
-import { errorLink, SSRlink } from './link'
+import { errorLink, SSRlink, httpLink } from './link'
 import { ApolloNextAppProvider } from '@apollo/experimental-nextjs-app-support/ssr'
 
 
 function makeClient() {
-  const clientHttpLink = new HttpLink({
-    uri: process.env.NEXT_PUBLIC_GRAPHQL_DEV_ENDPOINT,
-  })
-
   return new ApolloClient({
     name: 'apolloClient-CSR',
     ssrMode: true,
     connectToDevTools: true,
     cache: memoryCache,
-    link: from([errorLink, SSRlink, clientHttpLink]),
+    link: from([errorLink, SSRlink, httpLink]),
   })
 }
 

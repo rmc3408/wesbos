@@ -28,10 +28,10 @@ export const errorLink = onError(({ graphQLErrors, networkError }) => {
 export const SSRlink = new SSRMultipartLink({ stripDefer: true })
 
 export const httpLink = new HttpLink({ 
-  uri: process.env.GRAPHQL_DEV_ENDPOINT!,
+  uri: process.env.NEXT_PUBLIC_GRAPHQL_DEV_ENDPOINT!,
   credentials: 'include',
   headers: {
     'Access-Control-Allow-Origin': '*'
   },
-  fetchOptions: { cache: "no-store" },
+  //fetchOptions: { cache: "no-store" },
 })

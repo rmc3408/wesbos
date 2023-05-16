@@ -1,10 +1,16 @@
-import Image from 'next/image'
+'use client'
 
-export default function Home() {
-  return (
-    <main>
-      <h1>HOMEPAGE</h1>
-      <Image src="/next.svg" alt="Next.js Logo" width={180} height={37} priority />
-    </main>
-  )
+import { ALL_PRODUCTS_QUERY } from '@graphql/query'
+import Products from '@components/products'
+import { useQuery } from '@apollo/client';
+
+
+function Home() {
+  const { error, loading, data } = useQuery(ALL_PRODUCTS_QUERY)
+
+  if (loading) return <div><h1>LOADING...</h1></div>
+  if (error) return <div><h1>{error.message}</h1></div>
+  return <Products products={data.products} />
 }
+
+export default Home

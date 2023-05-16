@@ -26,6 +26,6 @@
       "@graphql/*": ["./src/graphql/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/styles/Form.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/styles/Form.tsx"],
   "exclude": ["node_modules"]
 }

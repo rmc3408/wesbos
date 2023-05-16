@@ -8,7 +8,7 @@ import { ProductType } from './products'
 
 
 function Product({ product }: { product: ProductType }) {
-  const linktoProduct = `/product/${product.id}`
+  const linktoProduct = `/products/${product.id}`
 
   return (
     <ItemStyled>

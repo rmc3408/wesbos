@@ -6,9 +6,12 @@ import useForm from '@components/hook/useForm'
 import DisplayError from './errorMessage'
 import { FormEvent } from 'react'
 import { ADD_ONE_PRODUCT_POST } from '@graphql/mutation'
+import { ALL_PRODUCTS_QUERY } from '@graphql/query'
+import { useRouter } from 'next/navigation';
 
 
 function CreateProduct() {
+  const router = useRouter()
   const { input, handleInput, resetForm, fileInput } = useForm({
     name: '',
     price: 0,
@@ -19,8 +22,9 @@ function CreateProduct() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    await addProduct({ variables: input })
+    await addProduct({ variables: input, refetchQueries: [{ query: ALL_PRODUCTS_QUERY }] })
     resetForm()
+    router.push('/products/' + data.createProduct.id)
   }
 
   if (error) return <DisplayError error={error} />;
