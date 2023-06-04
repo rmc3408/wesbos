@@ -16,7 +16,7 @@ function SingleProduct({ product }: any) {
   return (
     <ProductIDStyled>
       <div style={{ position: 'relative', width: '600px', height: '400px' }}>
-        <Image src={product.photo[0].image.publicUrlTransformed} 
+        <Image src={product.photo[0].image?.publicUrlTransformed || '/emptyProduct.jpg'} 
         alt={product.photo[0].id} fill />
       </div>
       <div className="details">

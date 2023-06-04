@@ -24,7 +24,7 @@ function CreateProduct() {
     e.preventDefault()
     await addProduct({ variables: input, refetchQueries: [{ query: ALL_PRODUCTS_QUERY }] })
     resetForm()
-    router.push('/products/' + data.createProduct.id)
+    router.push('/')
   }
 
   if (error) return <DisplayError error={error} />;
